@@ -1,0 +1,28 @@
+## @file  SamModulePkg.dec
+#   This Package provides all definitions, library classes and libraries instances.
+#
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = SamModulePkg
+  PACKAGE_GUID                   = B3E3D3E5-D62B-44A7-AC75-264F389D127E
+  PACKAGE_VERSION                = 0.01
+
+[Includes]
+  SamLib/
+  SamLib/Library/
+  SamLib/Include/
+  SamLib/Include/Library/
+
+[LibraryClasses]
+  DemoLib|SamModulePkg/SamLib/Include/Library/DemoLib.h
+
+[Guids]
+
+[Protocols]
+
+[Ppis]
+
+[PcdsFixedAtBuild]

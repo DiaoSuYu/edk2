@@ -1,0 +1,25 @@
+## @file
+#  Sample UEFI Library Reference EDKII Module.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DemoLib
+  FILE_GUID                      = 6937936E-ED24-443b-AEe7-1FA5E7ED21A6
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DemoLib
+  CONSTRUCTOR                    = DemoLibConstructor
+  DESTRUCTOR                     = DemoLibDestructor
+
+[Sources]
+  DemoLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SamModulePkg/SamModulePkg.dec
+
+[LibraryClasses]
+  UefiLib   # MdePkg/MdePkg.dec
