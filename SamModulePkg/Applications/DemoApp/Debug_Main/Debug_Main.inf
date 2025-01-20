@@ -1,0 +1,30 @@
+## @file
+#  Sample UEFI Application Reference EDKII Module.
+#
+#  This is a sample shell application to test DebugLib.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Debug_Main
+  FILE_GUID                      = 191c452b-ebe1-483f-bd78-2345e85ffd5f
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = Debug_Main
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  Debug_Main.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  DebugLib                    # MdePkg/MdePkg.dec
+  UefiApplicationEntryPoint   # MdePkg/MdePkg.dec
+  UefiLib                     # MdePkg/MdePkg.dec

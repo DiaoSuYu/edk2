@@ -32,5 +32,3 @@
   DemoLib          # SamModulePkg/SamModulePkg.dec
 
 [BuildOptions]
-  GCC:*_*_*_CC_FLAGS = -nostartfiles -nodefaultlibs -O0 -Wno-unused-variable -fPIC -fno-stack-protector
-  GCC:*_*_*_LD_FLAGS = -static -nostartfiles -nodefaultlibs -lgcc -lc -lm -Wl,--no-dynamic-linker

@@ -1,0 +1,38 @@
+=============== RSDP ================
+Signature: RSD PTR 
+Checksum: 0x8E
+OEMID: BOCHS 
+Revision: 0x02
+rsdtAddress: 0x0777D074
+Length: 0x00000024
+xsdtAddress: 0x000000000777D0E8
+Extended Checksum: 0xA6
+Reserved: 0x0 0x0 0x0 
+
+AllocatePoolPages: failed to allocate 25127 pages
+AllocatePool: failed to allocate 102918592 bytes
+[DumpAcpiTableEFIMain]: GetRSDT - Status = 3(Unsupported)
+=============== XSDT ================
+Signature: XSDT
+Length: 0x0000004C
+Revision: 0x01
+Checksum: 0xA9
+OEMID: BOCHS 
+OEM Table ID: BXPC    
+OEM Revision: 0x00000001
+Creator ID:     
+Creator Revision: 0x01000013
+Entry: 0x000000000777A000
+========== ACPI XDST LIST ==========
+Index Signature      Address
+0000    FACP    0x000000000777A000
+0001    APIC    0x0000000007779000
+0002    HPET    0x0000000007778000
+0003    WAET    0x0000000007777000
+0004    BGRT    0x0000000007776000
+
+AllocatePoolPages: failed to allocate 25167 pages
+AllocatePool: failed to allocate 103082688 bytes
+[DumpAcpiTableEFIMain]: SsdtWmiStudyAddress = 0
+[DumpAcpiTableEFIMain]: Length = 0
+[DumpAcpiTableEFIMain]: UpdateAslNameObject(WMIR) - Status = 0x3(Unsupported)

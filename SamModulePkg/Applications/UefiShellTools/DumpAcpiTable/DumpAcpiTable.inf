@@ -1,0 +1,32 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DumpAcpiTable
+  FILE_GUID                      = dc4fd395-26d5-4698-95a1-9323404df7c2
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DumpAcpiTableEFIMain
+
+[Sources]
+  DumpAcpiTable.c
+  DumpAcpiTable.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SamModulePkg/SamModulePkg.dec
+  
+[LibraryClasses]
+  BaseMemoryLib             # MdePkg/MdePkg.dec
+  DebugLib                  # MdePkg/MdePkg.dec
+  MemoryAllocationLib       # MdePkg/MdePkg.dec
+  UefiLib                   # MdePkg/MdePkg.dec
+  UefiApplicationEntryPoint # MdePkg/MdePkg.dec
+  AcpiLib                   # SamModulePkg/SamModulePkg.dec
+  CommonLib                 # SamModulePkg/SamModulePkg.dec
+  # Add MsftBuildLib to avoid the build error(error LNK2001: __chkstk) when use MSFT to build this DumpAcpiTable.inf
+  MsftBuildLib              # SamModulePkg/SamModulePkg.dec
+
+[Protocols]
+
+[Guids]
+
+[BuildOptions]

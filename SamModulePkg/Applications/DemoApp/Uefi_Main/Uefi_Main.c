@@ -1,7 +1,5 @@
-#include <Uefi.h>
+#include <Library/DemoLib.h>
 #include <Library/UefiLib.h>
-
-#include "Include/Library/DemoLib.h"
 
 
 /**

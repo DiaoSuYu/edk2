@@ -17,7 +17,7 @@
 #
 #  Debug output control
 #
-  DEFINE DEBUG_ENABLE_OUTPUT      = FALSE       # Set to TRUE to enable debug output
+  DEFINE DEBUG_ENABLE_OUTPUT      = TRUE        # Set to TRUE to enable debug output
   DEFINE DEBUG_PRINT_ERROR_LEVEL  = 0x80000046  # Flags to control amount of debug output
   DEFINE DEBUG_PROPERTY_MASK      = 0
 
@@ -37,31 +37,36 @@
   #
   # Entry Point Libraries
   #
-  UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
   ShellCEntryLib|ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
+  UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
   UefiDriverEntryPoint|MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf
 
   #
   # Common Libraries
   #
-  UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
+  BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+  BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
+  DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+  DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
+  DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+  HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
+  MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
-  MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
-  DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
-  BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
-  BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
-  UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
-  DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-  UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
   RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
-  HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
+  UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
   UefiHiiServicesLib|MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf
+  UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
+  UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
 
   #
   # Sam's Libraries
   #
+  AcpiLib|SamModulePkg/SamLib/Library/AcpiLib/AcpiLib.inf
+  CommonLib|SamModulePkg/SamLib/Library/CommonLib/CommonLib.inf
   DemoLib|SamModulePkg/SamLib/Library/DemoLib/DemoLib.inf
+  MsftBuildLib|SamModulePkg/SamLib/Library/MsftBuildLib/MsftBuildLib.inf
+  ShellTextColorLib|SamModulePkg/SamLib/Library/ShellTextColorLib/ShellTextColorLib.inf
 
 ###################################################################################################
 #
@@ -86,9 +91,11 @@
   #
   # Sam's Apps
   #
+  SamModulePkg/Applications/DemoApp/Debug_Main/Debug_Main.inf
   SamModulePkg/Applications/DemoApp/ShellApp_Main/ShellApp_Main.inf
   SamModulePkg/Applications/DemoApp/Stdlib_Main/Stdlib_Main.inf
   SamModulePkg/Applications/DemoApp/Uefi_Main/Uefi_Main.inf
+  SamModulePkg/Applications/UefiShellTools/DumpAcpiTable/DumpAcpiTable.inf
 
 ##############################################################################
 #
@@ -103,4 +110,4 @@
 #
 ##############################################################################
 !include StdLib/StdLib.inc
-
+!include MdePkg/MdeLibs.dsc.inc

@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ShellTextColorLib
+  FILE_GUID                      = 0b139851-b656-4f9f-bbfc-1f4ca65f6205
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ShellTextColorLib
+
+[Sources]
+  ShellTextColorLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SamModulePkg/SamModulePkg.dec
+  
+[LibraryClasses]
+  UefiLib                   # MdePkg/MdePkg.dec
+
+[BuildOptions]
+  MSFT:*_*_X64_CC_FLAGS = /wd4819 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-
+  MSFT:*_*_IA32_CC_FLAGS = /wd4819 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-

@@ -1,17 +1,9 @@
-#include <Uefi.h>
-#include <Library/UefiLib.h>
+#include <Library/DemoLib.h>
 #include <Library/ShellCEntryLib.h>
 #include <Library/UefiBootServicesTableLib.h>
+#include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
-#include "Include/Library/DemoLib.h"
-
-
-void *__stack_chk_guard = 0;
-void __attribute__((noreturn)) __stack_chk_fail(void) {
-    // Handle stack smashing detection (e.g., reboot, halt, etc.)
-    while (1);
-}
 
 /***
   Print a welcoming message.

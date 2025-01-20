@@ -1,0 +1,20 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MsftBuildLib
+  FILE_GUID                      = 9E02E049-A306-4901-A26A-4BFD972BD85A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = MsftBuildLib
+
+[Sources]
+  MsftBuildLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SamModulePkg/SamModulePkg.dec
+  
+[LibraryClasses]
+  UefiLib                   # MdePkg/MdePkg.dec
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /GL-
