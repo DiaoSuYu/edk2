@@ -300,8 +300,8 @@ GetSSDT (
             if (rsdpAddress != 0x00) {
                 rsdpAddress = *(UINTN*)(rsdpAddress + RSDP_RSDT_ADDRESS_BYTE_OFFEST);
                 if (rsdpAddress != 0x00) {
-                    RSDT->Length = *(UINTN*)(rsdpAddress + RSDT_LENGTH_BYTE_OFFEST);
-                    RSDT->Entry = *(UINTN*)(rsdpAddress + RSDT_DEFINITION_BLOCK_BYTE_OFFEST);
+                    RSDT->Length = *(UINT32*)(rsdpAddress + RSDT_LENGTH_BYTE_OFFEST);
+                    RSDT->Entry = *(UINT32*)(rsdpAddress + RSDT_DEFINITION_BLOCK_BYTE_OFFEST);
                     UINT8 SsdtSignature[SSDT_SIGNATURE_BYTE_LENGTH] = SECONDARY_SYSTEM_DESCRIPTION_TABLE_SIGNATURE_ASCII;
                     UINTN tableNumber = (RSDT->Length - RSDT_DEFINITION_BLOCK_BYTE_OFFEST) / sizeof(RSDT->Entry);
                     ACPI_RSDT_DATA *AcpiTables = AllocateZeroPool(tableNumber * sizeof(ACPI_RSDT_DATA));
@@ -341,7 +341,7 @@ GetSSDT (
             EXTENDED_SYSTEM_DESCRIPTION_TABLE  *XSDT = AllocateZeroPool(sizeof(EXTENDED_SYSTEM_DESCRIPTION_TABLE));
             rsdpAddress = (UINTN)ScanEfiConfigurationTable(SystemTable, &gEfiAcpi20TableGuid);
             if (rsdpAddress != 0x00) {
-                xsdtAddress = *(UINT64*)(rsdpAddress + RSDP_XSDT_ADDRESS_BYTE_OFFEST);
+                xsdtAddress = *(UINTN*)(rsdpAddress + RSDP_XSDT_ADDRESS_BYTE_OFFEST);
                 if (rsdpAddress != 0x00) {
                     XSDT->Length = *(UINT32*)(xsdtAddress + XSDT_LENGTH_BYTE_OFFEST);
                     XSDT->Entry = *(UINT64*)(xsdtAddress + XSDT_DEFINITION_BLOCK_BYTE_OFFEST);
@@ -418,7 +418,7 @@ GetXSDT (
         if (bitMode == UEFI_64_BIT_MODE) {
             rsdpAddress = (UINTN)ScanEfiConfigurationTable(SystemTable, &gEfiAcpi20TableGuid);
             if (rsdpAddress != 0x00) {
-                xsdtAddress = *(UINT64*)(rsdpAddress + RSDP_XSDT_ADDRESS_BYTE_OFFEST);
+                xsdtAddress = *(UINTN*)(rsdpAddress + RSDP_XSDT_ADDRESS_BYTE_OFFEST);
                 if (rsdpAddress != 0x00) {
                     for (UINT8 i = 0; i < XSDT_SIGNATURE_BYTE_LENGTH; i++) {
                         XSDT->Signature[i] = *(UINT8*)(xsdtAddress + i);

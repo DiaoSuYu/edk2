@@ -1,3 +1,13 @@
+## @file
+#  AcpiLib UEFI Library Module.
+#
+#  The AcpiLib is designed as a base library, and it is not a complete application or driver.
+#
+#  This is a UEFI library module designed to provide functionalities related to ACPI tables.
+#  It provides necessary functions for ACPI table parsing, modification, and manipulation.
+#
+##
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = AcpiLib
@@ -8,7 +18,7 @@
 
 # The following information is for reference only and not required by the build tools.
 #
-#  VALID_ARCHITECTURES           = X64
+#  VALID_ARCHITECTURES           = IA32 X64
 #
 
 [Sources]
@@ -19,13 +29,10 @@
   SamModulePkg/SamModulePkg.dec
 
 [Guids]
-  gEfiAcpi10TableGuid
-  gEfiAcpi20TableGuid
+  gEfiAcpi10TableGuid   # MdePkg/MdePkg.dec
+  gEfiAcpi20TableGuid   # MdePkg/MdePkg.dec
 
 [LibraryClasses]
-  DebugLib                  # MdePkg/MdePkg.dec
-  UefiLib                   # MdePkg/MdePkg.dec
-  CommonLib                 # SamModulePkg/SamModulePkg.dec
-  
-[BuildOptions]
-  MSFT:*_*_*_CC_FLAGS = /wd4819 /wd4312 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-
+  DebugLib    # MdePkg/MdePkg.dec
+  UefiLib     # MdePkg/MdePkg.dec
+  CommonLib   # SamModulePkg/SamModulePkg.dec

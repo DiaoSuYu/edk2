@@ -1,0 +1,38 @@
+## @file
+#  CyclicDrawingDriver UEFI Driver Module.
+#
+#  This UEFI driver is designed to demonstrate cyclic drawing functionality on the screen.
+#
+#  It periodically draws orange and black circle in the center of UEFI Shell, and changes
+#  the text color of Console Output to yellow.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CyclicDrawingDriver
+  FILE_GUID                      = 5d1cac74-aa4a-4d8a-87fb-91219ca4f13e
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CyclicDrawingDriverMain
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  CyclicDrawingDriver.c
+  CyclicDrawingDriver.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib      # MdePkg/MdePkg.dec
+  UefiDriverEntryPoint          # MdePkg/MdePkg.dec
+  UefiLib                       # MdePkg/MdePkg.dec
+  UefiRuntimeServicesTableLib   # MdePkg/MdePkg.dec
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid   # MdePkg/MdePkg.dec

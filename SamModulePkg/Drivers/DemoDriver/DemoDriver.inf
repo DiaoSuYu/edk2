@@ -1,0 +1,37 @@
+## @file
+#  DemoDriver UEFI Driver Module.
+#
+#  This module is a sample UEFI driver that demonstrates basic driver functionality.
+#
+#  The driver serves as a starting point for developers building UEFI drivers with basic
+#  initialization and unloading capabilities.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DemoDriver
+  FILE_GUID                      = bfa826b5-f75c-4340-8e3d-6c998b5b5f3f
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DemoDriverMain
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  DemoDriver.c
+  DemoDriver.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib   # MdePkg/MdePkg.dec
+  UefiDriverEntryPoint       # MdePkg/MdePkg.dec
+  UefiLib                    # MdePkg/MdePkg.dec
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid   # MdePkg/MdePkg.dec

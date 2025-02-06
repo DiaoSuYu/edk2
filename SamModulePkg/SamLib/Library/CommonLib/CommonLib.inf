@@ -1,3 +1,13 @@
+## @file
+#  CommonLib UEFI Library Module.
+#
+#  The CommonLib is designed as a base library, and it is not a complete application or driver.
+#
+#  This is a UEFI library module designed to provide commonly used functionalities.
+#  It contains a set of utility functions that can be reused across different UEFI projects.
+#
+##
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = CommonLib
@@ -5,6 +15,11 @@
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = CommonLib
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
 
 [Sources]
   CommonLib.c
@@ -14,8 +29,5 @@
   SamModulePkg/SamModulePkg.dec
   
 [LibraryClasses]
-  BaseMemoryLib             # MdePkg/MdePkg.dec
-  UefiLib                   # MdePkg/MdePkg.dec
-
-[BuildOptions]
-  MSFT:*_*_*_CC_FLAGS = /wd4819 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-
+  BaseMemoryLib   # MdePkg/MdePkg.dec
+  UefiLib         # MdePkg/MdePkg.dec

@@ -1,3 +1,13 @@
+## @file
+#  ShellTextColorLib UEFI Library Module.
+#
+#  The ShellTextColorLib is designed as a base library, and it is not a complete application or driver.
+#
+#  This is a UEFI library module designed to provide functions to control and text colors in a UEFI Shell environment.
+#  It allows UEFI applications and drivers to set and change the text color output on the UEFI shell.
+#
+##
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = ShellTextColorLib
@@ -14,8 +24,4 @@
   SamModulePkg/SamModulePkg.dec
   
 [LibraryClasses]
-  UefiLib                   # MdePkg/MdePkg.dec
-
-[BuildOptions]
-  MSFT:*_*_X64_CC_FLAGS = /wd4819 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-
-  MSFT:*_*_IA32_CC_FLAGS = /wd4819 /wd4294 /wd4204 /wd4244 /Gs- /GR- /EHs-
+  UefiLib   # MdePkg/MdePkg.dec

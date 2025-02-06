@@ -30,5 +30,3 @@
   UefiLib          # MdePkg/MdePkg.dec
   ShellCEntryLib   # ShellPkg/ShellPkg.dec
   DemoLib          # SamModulePkg/SamModulePkg.dec
-
-[BuildOptions]

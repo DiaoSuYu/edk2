@@ -1,3 +1,17 @@
+## @file
+#  MsftBuildLib UEFI Library Module.
+#
+#  The MsftBuildLib is designed as a base library, and it is not a complete application or driver.
+#
+#  This is a UEFI library module specifically designed to provide build-time support for UEFI applications and drivers
+#  when compiling with Microsoft compilers.
+#
+#  The library is intended to handle specific build-related tasks and optimizations for projects that use
+#  Microsoft's build environment. It helps in resolving issues related to compiler-specific flags and optimizations.
+#  It is particularly helpful for avoiding build errors or compiler warnings during UEFI module development.
+#
+##
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = MsftBuildLib
@@ -14,7 +28,7 @@
   SamModulePkg/SamModulePkg.dec
   
 [LibraryClasses]
-  UefiLib                   # MdePkg/MdePkg.dec
+  UefiLib   # MdePkg/MdePkg.dec
 
 [BuildOptions]
   MSFT:*_*_*_CC_FLAGS = /GL-
