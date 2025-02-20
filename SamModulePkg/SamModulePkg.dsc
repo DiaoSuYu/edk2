@@ -96,12 +96,14 @@
   SamModulePkg/Applications/DemoApp/Stdlib_Main/Stdlib_Main.inf
   SamModulePkg/Applications/DemoApp/Uefi_Main/Uefi_Main.inf
   SamModulePkg/Applications/UefiShellTools/DumpAcpiTable/DumpAcpiTable.inf
+  SamModulePkg/Applications/UefiShellTools/DelayTool/DelayTool.inf
 
   #
   # Sam's Drivers
   #
   SamModulePkg/Drivers/CyclicDrawingDriver/CyclicDrawingDriver.inf
   SamModulePkg/Drivers/DemoDriver/DemoDriver.inf
+
 ##############################################################################
 #
 # Specify whether we are running in an emulation environment, or not.

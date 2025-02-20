@@ -1,0 +1,39 @@
+## @file
+#  DelayTool UEFI Application Module.
+#
+#  This module is a UEFI application designed to dump the info of ACPI tables.
+#  It includes a simple delay mechanism that accepts a delay time (in seconds)
+#  as a command-line argument and pauses the application for the specified time.
+#
+#  The primary functionality of this module is to parse and print a delay time 
+#  from the command line, then pause the execution for that duration.
+#  It also provides usage instructions when invalid or missing arguments are supplied.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DelayTool
+  FILE_GUID                      = f7e6a3bf-e342-4464-b363-a6c9beec5a2c
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DelayToolEFIMain
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64  # The supported architectures for this application.
+#
+
+[Sources]
+  DelayTool.c
+  DelayTool.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiLib                     # MdePkg/MdePkg.dec
+  UefiApplicationEntryPoint   # MdePkg/MdePkg.dec
+
+[Protocols]
+  gEfiShellParametersProtocolGuid   # MdePkg/MdePkg.dec
