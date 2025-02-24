@@ -58,17 +58,50 @@ formset
       line  4,
       align right;
 
+    // <DiaoSuyu-20250224+>
+    // For Debug
+
+    /*
     banner
-      title = STRING_TOKEN(STR_CUSTOMIZE_BANNER_LINE5_LEFT),
+    title = STRING_TOKEN(STR_CUSTOMIZE_BANNER_LINE5_LEFT),
+    line  4,
+    align left;
+
+    banner
+      title = STRING_TOKEN(STR_CUSTOMIZE_BANNER_LINE5_RIGHT),
+      line  4,
+      align right;
+    */
+
+    banner
+      title = STRING_TOKEN(STR_DEBUG_INFO_LEFT),
       line  5,
       align left;
 
     banner
-      title = STRING_TOKEN(STR_CUSTOMIZE_BANNER_LINE5_RIGHT),
+      title = STRING_TOKEN(STR_DEBUG_INFO_RIGHT),
       line  5,
       align right;
 
+    date
+        name    = Date,
+        prompt  = STRING_TOKEN(STR_DATE),
+        help    = STRING_TOKEN(STR_DATE_HELP),
+        flags   = STORAGE_TIME,
+        default = 2014/1/1,
+    enddate;
+
+    time 
+        name    = Time, 
+        prompt  = STRING_TOKEN(STR_TIME), 
+        help    = STRING_TOKEN(STR_TIME_HELP), 
+        flags   = STORAGE_TIME,
+        default = 0:0:0, 
+    endtime;
+
     label LABEL_FRONTPAGE_INFORMATION;
+    // <DiaoSuyu-20250224->
+
     //
     // This is where we will dynamically add a Action type op-code to show
     // the platform information.

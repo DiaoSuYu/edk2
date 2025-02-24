@@ -66,3 +66,13 @@
                                          #language fr-FR  "WARNING: Test key detected."
 #string STR_NULL_STRING                #language en-US  " "
                                        #language fr-FR  " "
+
+// <DiaoSuyu-20250224+>
+// For Debug
+#string STR_DEBUG_INFO_LEFT    #language en-US "Edk2 Debug"
+#string STR_DEBUG_INFO_RIGHT   #language en-US "Author: DiaoSuyu"
+#string STR_DATE               #language en-US "System Date"
+#string STR_DATE_HELP          #language en-US "Set the Date. Use Tab to switch between Date elements."
+#string STR_TIME               #language en-US "System Time"
+#string STR_TIME_HELP          #language en-US "Set the Time. Use Tab to switch between Time elements."
+// <DiaoSuyu-20250224+>

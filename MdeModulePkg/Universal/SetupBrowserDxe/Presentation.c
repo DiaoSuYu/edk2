@@ -637,7 +637,13 @@ AddStatementToDisplayForm (
   if (MinRefreshInterval != 0) {
     Status = gBS->CreateEvent (EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, RefreshIntervalProcess, NULL, &RefreshIntervalEvent);
     ASSERT_EFI_ERROR (Status);
-    Status = gBS->SetTimer (RefreshIntervalEvent, TimerPeriodic, MinRefreshInterval * ONE_SECOND);
+    
+    // <DiaoSuyu-20250224+>
+    // For Debug
+    // Status = gBS->SetTimer (RefreshIntervalEvent, TimerPeriodic, MinRefreshInterval * ONE_SECOND);
+    Status = gBS->SetTimer (RefreshIntervalEvent, TimerPeriodic, MinRefreshInterval * 20000000);  // 2 second
+    // <DiaoSuyu-20250224->
+
     ASSERT_EFI_ERROR (Status);
 
     EventNode = AllocateZeroPool (sizeof (FORM_BROWSER_REFRESH_EVENT_NODE));

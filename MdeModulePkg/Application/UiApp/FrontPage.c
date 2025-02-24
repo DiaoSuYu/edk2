@@ -536,6 +536,9 @@ UpdateFrontPageBannerStrings (
   HiiSetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_CUSTOMIZE_BANNER_LINE4_RIGHT), NewString, NULL);
   FreePool (NewString);
 
+  // <DiaoSuyu-20250224+>
+  // For Debug
+  /*
   NewString = HiiGetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_CUSTOMIZE_BANNER_LINE5_LEFT), NULL);
   UiCustomizeFrontPageBanner (5, TRUE, &NewString);
   HiiSetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_CUSTOMIZE_BANNER_LINE5_LEFT), NewString, NULL);
@@ -545,6 +548,17 @@ UpdateFrontPageBannerStrings (
   UiCustomizeFrontPageBanner (5, FALSE, &NewString);
   HiiSetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_CUSTOMIZE_BANNER_LINE5_RIGHT), NewString, NULL);
   FreePool (NewString);
+  */
+  NewString = HiiGetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_DEBUG_INFO_LEFT), NULL);
+  UiCustomizeFrontPageBanner (5, TRUE, &NewString);
+  HiiSetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_DEBUG_INFO_LEFT), NewString, NULL);
+  FreePool (NewString);
+
+  NewString = HiiGetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_DEBUG_INFO_RIGHT), NULL);
+  UiCustomizeFrontPageBanner (5, FALSE, &NewString);
+  HiiSetString (gFrontPagePrivate.HiiHandle, STRING_TOKEN (STR_DEBUG_INFO_RIGHT), NewString, NULL);
+  FreePool (NewString);
+  // <DiaoSuyu-20250224->
 
   //
   // Update Front Page banner strings base on SmBios Table.
