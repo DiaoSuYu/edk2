@@ -1,0 +1,49 @@
+## @file
+#  ConnectWithTcp4 UEFI Application Module.
+#
+#  This module is a UEFI application designed to establish a TCP4 connection.
+#  It includes the necessary functionality to connect to a network using 
+#  the TCP/IPv4 protocol. The application is intended to demonstrate 
+#  basic networking operations in UEFI environments.
+#
+#  The primary functionality of this module is to establish a TCP4 connection,
+#  and send/receive data over the network. It accepts various command-line arguments
+#  that control its behavior, such as the target IP address, port number, and any other 
+#  networking-related options. If arguments are missing or incorrect, the application 
+#  will display usage instructions.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = ConnectWithTcp4
+  FILE_GUID                      = 4ea97c46-742a-4efd-bf42-747021e3c15f
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = ShellCEntryLib
+
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64  # The supported architectures for this application.
+#
+
+[Sources]
+  ConnectWithTcp4.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  StdLib/StdLib.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib  # MdePkg/MdePkg.dec
+  UefiLib                   # MdePkg/MdePkg.dec
+  ShellLib                  # ShellPkg/ShellPkg.dec
+  ShellCEntryLib            # ShellPkg/ShellPkg.dec
+  LibC                      # StdLib/StdLib.dec
+  LibStdio                  # StdLib/StdLib.dec
+  BsdSocketLib              # StdLib/StdLib.dec
+  EfiSocketLib              # StdLib/StdLib.dec
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS  = /Oi- /wd4477 /wd4819
