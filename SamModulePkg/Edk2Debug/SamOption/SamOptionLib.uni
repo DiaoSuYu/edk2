@@ -1,0 +1,15 @@
+// /** @file
+//
+// Sam Option Library used by UiApp.
+//
+// **/
+
+#string STR_MODULE_ABSTRACT
+#language en-US
+"Sam Option Library used by UiApp."
+
+#string STR_MODULE_DESCRIPTION
+#language en-US
+"Sam Option Library used by UiApp."
+
+
