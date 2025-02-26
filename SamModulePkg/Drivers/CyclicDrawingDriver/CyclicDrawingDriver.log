@@ -1,0 +1,28 @@
+FS0:\> dh -d -v 9D
+9D: 63CC318
+ComponentName2(63753F0)
+ComponentName(63753F0)
+DriverBinding(63753C0)
+ImageDevicePath(639E818)
+  PciRoot(0x0)/Pci(0x1,0x1)/Ata(0x0)/HD(1,MBR,0xBE1AFDFA)/\CyclicDrawingDriver.efi
+LoadedImage(639CD40)
+  Revision......: 0x00001000
+  ParentHandle..: 6AB1E98
+  SystemTable...: 75EC018
+  DeviceHandle..: 6A55998
+  FilePath......: \CyclicDrawingDriver.efi
+  PdbFileName...: /media/sf_VirtualBoxShare/UEFI/Build/SamModulePkg/RELEASE_GCC5/X64/SamModulePkg/Drivers/CyclicDrawingDriver/CyclicDrawingDriver/DEBUG/CyclicDrawingDriver.dll
+  OptionsSize...: 0
+  LoadOptions...: 0
+  ImageBase.....: 6372000
+  ImageSize.....: 3540
+  CodeType......: EfiBootServicesCode
+  DataType......: EfiBootServicesData
+  Unload........: 0
+   Driver Name [9D]   : Cyclic Drawing Driver
+   Driver Image Name  : \CyclicDrawingDriver.efi
+   Driver Version     : 00000010
+   Driver Type        : <Unknown>
+   Configuration      : NO
+   Diagnostics        : NO
+   Managing           : None

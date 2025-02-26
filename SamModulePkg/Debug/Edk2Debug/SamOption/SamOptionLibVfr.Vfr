@@ -1,0 +1,23 @@
+///** @file
+//
+//  Sam Option formset.
+//
+//**/
+
+#define SAM_OPTION_BAR_FORMSET_GUID  {0x6086f8c4, 0x3f16, 0x47a4, 0x92, 0xfe, 0x98, 0x2c, 0x8f, 0x78, 0xfc, 0x92}
+#define SAM_OPTION_BAR_FORM_ID       0x1000
+
+formset
+  guid      = SAM_OPTION_BAR_FORMSET_GUID,
+  title     = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER),
+  help      = STRING_TOKEN(STR_SAM_OPTION_BAR_HELP),
+  classguid = gEfiIfrFrontPageGuid,
+
+  form formid = SAM_OPTION_BAR_FORM_ID,
+       title  = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER);
+
+       subtitle text = STRING_TOKEN(STR_SAM_OPTION_HEADER);
+
+  endform;
+
+endformset;

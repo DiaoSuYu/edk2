@@ -1,0 +1,24 @@
+///** @file
+//
+// Module Name:
+//
+//   SamOptionLibStrings.uni
+//
+// Abstract:
+//
+//   String definitions for Sam Option formset.
+//
+// Revision History:
+//
+// --*/
+
+/=#
+#langdef   en-US "English"
+#langdef   fr-FR "Français"
+
+#string STR_SAM_OPTION_BAR_BANNER   #language en-US  "Sam Option Bar"
+                                    #language fr-FR  "Sam Option Bar"
+#string STR_SAM_OPTION_BAR_HELP     #language en-US  "This Bar is used for Sam to study and debug under edk2"
+                                    #language fr-FR  "This Bar is used for Sam to study and debug under edk2"
+#string STR_SAM_OPTION_HEADER       #language en-US  "Sam Option Bar Header"
+                                    #language fr-FR  "Sam Option Bar Header"
