@@ -19,6 +19,7 @@
 [LibraryClasses]
   AcpiLib|SamModulePkg/SamLib/Include/Library/AcpiLib.h
   CommonLib|SamModulePkg/SamLib/Include/Library/CommonLib.h
+  DemoCapsulationLib|SamModulePkg/SamLib/Include/Library/DemoCapsulationLib.h
   DemoLib|SamModulePkg/SamLib/Include/Library/DemoLib.h
   MsftBuildLib|SamModulePkg/SamLib/Include/Library/MsftBuildLib.h
   ShellTextColorLib|SamModulePkg/SamLib/Include/Library/ShellTextColorLib.h

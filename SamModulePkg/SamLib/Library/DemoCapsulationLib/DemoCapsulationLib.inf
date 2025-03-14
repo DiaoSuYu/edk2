@@ -1,0 +1,35 @@
+## @file
+#  Sample UEFI Capsulation Library Reference EDKII Module.
+#
+#  This library provides capsulation library for external applications 
+#  or library without exposing detail code.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DemoCapsulationLib
+  FILE_GUID                      = 24978f74-4b03-4269-abdd-570358183b8e
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DemoCapsulationLib
+  CONSTRUCTOR                    = DemoCapsulationLibConstructor
+  DESTRUCTOR                     = DemoCapsulationLibDestructor
+
+[Sources]
+  DemoCapsulationLib.c
+
+# If you wanna capsulate you library, and without expose your detail code source to anyone, 
+# Comment out the source column above and select the Binary that you need below
+# [Binaries]
+#   # For GCC5
+#   LIB|DemoCapsulationLib_GCC5.lib|*|GCC
+#   # For MSVC
+#   LIB|DemoCapsulationLib_VS2022.lib|*|MSFT
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SamModulePkg/SamModulePkg.dec
+
+[LibraryClasses]
+  UefiLib   # MdePkg/MdePkg.dec
