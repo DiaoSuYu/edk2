@@ -31,6 +31,7 @@
 [LibraryClasses]
   UefiBootServicesTableLib      # MdePkg/MdePkg.dec
   UefiLib                       # MdePkg/MdePkg.dec
+  PrintLib                      # MdePkg/MdePkg.dec
   UefiRuntimeServicesTableLib   # MdePkg/MdePkg.dec
 
 [Guids]

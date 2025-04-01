@@ -1,8 +1,11 @@
 #include "SamOptionLib.h"
+#include "SamOptionLibHii.h"
 
 #include <Library/DebugLib.h>
 #include <Library/DevicePathLib.h>
 #include <Library/HiiLib.h>
+#include <Library/MemoryAllocationLib.h>
+#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Guid/MdeModuleHii.h>
 
@@ -55,12 +58,94 @@ SAM_OPTION_CALLBACK_DATA  gSamOptionLibPrivate = {
 
 
 /**
+ * Computes the base - 10 logarithm (integer) of a given number.
+ * Returns the number of digits in the number.
+ *
+ * @param[in] Value The unsigned integer number for which to calculate the number of digits.
+ * @return The number of digits in the given number. For the number 0, it returns 1.
+ */
+UINTN
+Log10 (
+  IN UINTN  Value
+  )
+{
+    UINTN Digits = 0;
+    while (Value > 0) {
+        Value /= 10;
+        Digits++;
+    }
+    return Digits;
+}
+
+
+/**
+ * Event notification function for the second event.
+ * This function is called when the specified EFI event occurs.
+ * It updates a counter, formats the counter value as a string,
+ * and sets the corresponding HII (Human Interface Infrastructure) string.
+ *
+ * @param[in] Event   The EFI event that triggered this notification.
+ * @param[in] Context A pointer to the context data associated with the event.
+ *                    This context should point to a UINTN variable that serves as a counter.
+ *
+ * @retval None This function has a VOID return type. If the context is NULL or memory allocation fails, 
+ *              the function exits early without performing the intended operations.
+ */
+VOID
+EFIAPI
+SecondEventNotify (
+  IN EFI_EVENT  Event,
+  IN VOID       *Context
+  )
+{
+    // Check if the context is NULL to prevent dereferencing a NULL pointer.
+    if (Context == NULL) {
+        return;
+    }
+
+    UINTN *Counter = (UINTN*)Context;
+
+    // Reset counter if it exceeds the maximum value
+    if (*Counter >= MAX_COUNTER_VALUE) {
+        *Counter = 0;
+    }
+
+    UINTN CounterValue = (*Counter)++;
+
+    // Calculate the number of digits needed for the counter value
+    UINTN NumDigits = (CounterValue == 0) ? 1 : Log10(CounterValue) + 1;
+
+    // The buffer size needs to include space for digits, 
+    // 's' and null terminator, + 1 for 's', + 1 for '\0' (null terminator)
+    UINTN BufferSize = (NumDigits + 2) * sizeof(CHAR16);
+    CHAR16 *Buffer = AllocatePool(BufferSize);
+    if (Buffer == NULL) {
+        return;
+    }
+
+    // Format the counter value as a string, appending 's' at the end.
+    UnicodeSPrint(Buffer, BufferSize, L"%ds", CounterValue);
+
+    // Update the HII string with the newly formatted value.
+    HiiSetString (
+        gSamOptionLibPrivate.HiiHandle,
+        STRING_TOKEN(STR_SAM_STATIC_INFROMATION_SECOND_VALUE),
+        Buffer,
+        NULL
+    );
+
+    // Free the dynamically allocated memory to avoid memory leaks.
+    FreePool(Buffer);
+}
+
+
+/**
   Extracts the current configuration for the requested elements.
 
-  @param This       Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
-  @param Request    Configuration request string.
-  @param Progress   Pointer to the character in Request where parsing stopped.
-  @param Results    Pointer to the filled configuration response string.
+  @param [in]  This       Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
+  @param [in]  Request    Configuration request string.
+  @param [out] Progress   Pointer to the character in Request where parsing stopped.
+  @param [out] Results    Pointer to the filled configuration response string.
 
   @retval EFI_SUCCESS            Successfully retrieved the requested values.
   @retval EFI_OUT_OF_RESOURCES   Insufficient memory to store results.
@@ -87,9 +172,9 @@ SamOptionLibExtractConfig (
 /**
   Processes configuration changes.
 
-  @param This          Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
-  @param Configuration Configuration response string.
-  @param Progress      Pointer to the last successfully processed character.
+  @param [in]  This          Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
+  @param [in]  Configuration Configuration response string.
+  @param [out] Progress      Pointer to the last successfully processed character.
 
   @retval EFI_SUCCESS            Configuration processed successfully.
   @retval EFI_INVALID_PARAMETER  Configuration string is NULL.
@@ -114,12 +199,12 @@ SamOptionLibRouteConfig (
 /**
   Callback function for boot manager menu actions.
 
-  @param This          Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
-  @param Action        Browser action triggering the callback.
-  @param QuestionId    Unique identifier for the question.
-  @param Type          Data type of the question.
-  @param Value         Pointer to the data associated with the question.
-  @param ActionRequest Output parameter indicating requested action.
+  @param [in]  This          Pointer to EFI_HII_CONFIG_ACCESS_PROTOCOL instance.
+  @param [in]  Action        Browser action triggering the callback.
+  @param [in]  QuestionId    Unique identifier for the question.
+  @param [in]  Type          Data type of the question.
+  @param [in]  Value         Pointer to the data associated with the question.
+  @param [out] ActionRequest Output parameter indicating requested action.
 
   @retval EFI_SUCCESS  Callback handled successfully.
 **/
@@ -142,8 +227,8 @@ SamOptionLibCallback (
 /**
   Initializes the boot manager library and installs required protocols.
 
-  @param ImageHandle   The image handle.
-  @param SystemTable   The system table.
+  @param [in] ImageHandle   The image handle.
+  @param [in] SystemTable   The system table.
 
   @retval EFI_SUCCESS  Initialization successful.
   @retval Other        Error occurred during initialization.
@@ -179,6 +264,36 @@ SamOptionLibConstructor (
     );
     ASSERT (gSamOptionLibPrivate.HiiHandle != NULL);
 
+#if 0
+    EFI_EVENT  SecondEvent;
+    UINTN *Counter = AllocateZeroPool(sizeof(UINTN));
+    if (Counter == NULL) {
+        return EFI_OUT_OF_RESOURCES;
+    }
+
+    Status = gBS->CreateEvent (
+        EVT_TIMER | EVT_NOTIFY_SIGNAL,
+        TPL_CALLBACK,
+        SecondEventNotify,
+        (VOID*)Counter,
+        &SecondEvent
+    );
+    if (EFI_ERROR(Status)) {
+        DEBUG((DEBUG_ERROR, "[SamOptionLibConstructor]: Create Event(Second) Failed = %r(0x%x)\n", Status, Status));
+        return Status;
+    }
+
+    Status = gBS->SetTimer (
+        SecondEvent,
+        TimerPeriodic,
+        ONE_SECOND
+    );
+    if (EFI_ERROR(Status)) {
+        DEBUG((DEBUG_ERROR, "[SamOptionLibConstructor]: Set Timer Failed = %r(0x%x)\n", Status, Status));
+        return Status;
+    }
+#endif
+
     return EFI_SUCCESS;
 }
 
@@ -186,8 +301,8 @@ SamOptionLibConstructor (
 /**
   Unloads the boot manager library and removes installed protocols.
 
-  @param ImageHandle   The image handle.
-  @param SystemTable   The system table.
+  @param [in] ImageHandle   The image handle.
+  @param [in] SystemTable   The system table.
 
   @retval EFI_SUCCESS  Successfully unloaded.
 **/

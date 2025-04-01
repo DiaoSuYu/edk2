@@ -12,6 +12,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Uefi.h>
 #include <Protocol/HiiConfigAccess.h>
 
+
 #pragma pack(1)
 
 /**
@@ -26,16 +27,6 @@ typedef struct {
 
 #pragma pack()
 
-/**
-  GUID for the SAM Option Formset.
-  
-  This GUID is used to identify the formset in the HII database and must match
-  the definition in the corresponding VFR file.
-*/
-#define SAM_OPTION_FORMSET_GUID \
-{ \
-  0x6086f8c4, 0x3f16, 0x47a4, {0x92, 0xfe, 0x98, 0x2c, 0x8f, 0x78, 0xfc, 0x92} \
-}
 
 /**
   Signature for SAM Option Callback Data structure.
@@ -45,11 +36,15 @@ typedef struct {
 #define SAM_OPTION_CALLBACK_DATA_SIGNATURE  SIGNATURE_32 ('S', 'O', 'C', 'B')
 
 /**
-  Form ID for SAM Option menu.
-  
-  This ID is used to identify the form inside the formset.
+  Define the maximum allowed counter value.
 */
-#define SAM_OPTION_FORM_ID  0x1000
+#define MAX_COUNTER_VALUE (UINTN)(-1)
+
+/**
+  Time definitions
+*/
+#define ONE_SECOND  10000000
+
 
 /**
   Structure for handling HII-related data and protocols.

@@ -4,19 +4,68 @@
 //
 //**/
 
-#define SAM_OPTION_BAR_FORMSET_GUID  {0x6086f8c4, 0x3f16, 0x47a4, 0x92, 0xfe, 0x98, 0x2c, 0x8f, 0x78, 0xfc, 0x92}
-#define SAM_OPTION_BAR_FORM_ID       0x1000
+#include "SamOptionLibHii.h"
+
+
 
 formset
-  guid      = SAM_OPTION_BAR_FORMSET_GUID,
+  guid      = SAM_OPTION_FORMSET_GUID,
   title     = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER),
   help      = STRING_TOKEN(STR_SAM_OPTION_BAR_HELP),
   classguid = gEfiIfrFrontPageGuid,
 
-  form formid = SAM_OPTION_BAR_FORM_ID,
+  varstore SAM_OPTION_LIB_DATA,
+    varid = SAM_OPTION_VARSTORE_ID,
+    name  = SamOptionLibVar,
+    guid  = SAM_OPTION_FORMSET_GUID;
+
+  form formid = SAM_OPTION_FORM_ID,
        title  = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER);
 
        subtitle text = STRING_TOKEN(STR_SAM_OPTION_HEADER);
+
+       subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+       // text
+       //     help     = STRING_TOKEN(STR_SAM_STATIC_INFROMATION_SECOND_TITLE_HELP),
+       //     text     = STRING_TOKEN(STR_SAM_STATIC_INFROMATION_SECOND_TITLE),
+       //     text     = STRING_TOKEN(STR_SAM_STATIC_INFROMATION_SECOND_VALUE),
+       //     flags    = 0,
+       //     key      = 0;
+
+      checkbox varid = SamOptionLibVar.CheckBox,
+          questionid = SAM_KEY_VALUE_CHECKBOX,
+          prompt     = STRING_TOKEN(STR_SAM_CHECKBOX_PROMPT),
+          help       = STRING_TOKEN(STR_NULL_STRING),
+          flags      = CHECKBOX_DEFAULT | CHECKBOX_DEFAULT_MFG | INTERACTIVE,
+          default    = TRUE,
+      endcheckbox;
+
+      // string varid    = SamOptionLibVar.string,
+      //     questionid = KEY_VALUE_BOOT_DESCRIPTION,
+      //     prompt   = STRING_TOKEN(STR_LOAD_OPTION_DESC),
+      //     help     = STRING_TOKEN(STR_NULL_STRING),
+      //     flags    = INTERACTIVE,
+      //     minsize  = 6,
+      //     maxsize  = 75,
+      // endstring;
+
+      //oneof varid = SamOptionLibVar.Test,
+      //    prompt      = STRING_TOKEN(STR_DT_ACPI_SELECT_PROMPT),
+      //    help        = STRING_TOKEN(STR_DT_ACPI_SELECT_HELP),
+      //    flags       = NUMERIC_SIZE_1 | INTERACTIVE | RESET_REQUIRED,
+      //    option text = STRING_TOKEN(STR_DT_ACPI_SELECT_DT), value = DT_ACPI_SELECT_DT, flags = DEFAULT;
+      //    option text = STRING_TOKEN(STR_DT_ACPI_SELECT_ACPI), value = DT_ACPI_SELECT_ACPI, flags = 0;
+      //endoneof;
+
+    // action
+    //      questionid  = KEY_REFRESH_TITLE_CONNECTION_STATUS,
+    //      prompt      = STRING_TOKEN(STR_NULL_STRING),
+    //      help        = STRING_TOKEN(STR_NULL_STRING),
+    //      flags       = INTERACTIVE,
+    //      config      = STRING_TOKEN(STR_NULL_STRING),
+    //      refreshguid = WIFI_CONFIG_MAIN_FORM_REFRESH_GUID,
+    // endaction;
 
   endform;
 
