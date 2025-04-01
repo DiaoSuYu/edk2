@@ -16,9 +16,45 @@
 #langdef   en-US "English"
 #langdef   fr-FR "Français"
 
-#string STR_SAM_OPTION_BAR_BANNER   #language en-US  "Sam Option Bar"
-                                    #language fr-FR  "Sam Option Bar"
-#string STR_SAM_OPTION_BAR_HELP     #language en-US  "This Bar is used for Sam to study and debug under edk2"
-                                    #language fr-FR  "This Bar is used for Sam to study and debug under edk2"
-#string STR_SAM_OPTION_HEADER       #language en-US  "Sam Option Bar Header"
-                                    #language fr-FR  "Sam Option Bar Header"
+#string STR_NULL_STRING                     #language en-US ""
+
+#string STR_ENABLE                          #language en-US "Enable"
+#string STR_DISABLE                         #language en-US "Disable"
+
+#string STR_STANDARD_DEFAULT_PROMPT         #language en-US "Standard Default"
+#string STR_MANUFACTURE_DEFAULT_PROMPT      #language en-US "Manufacture Default"
+
+#string STR_SAM_OPTION_BAR_BANNER           #language en-US  "Sam Option Bar"
+#string STR_SAM_OPTION_BAR_HELP             #language en-US  "This Bar is used for Sam to study and debug under edk2"
+
+#string STR_SAM_OPTION_HEADER               #language en-US  "Sam Option Bar Header"
+
+#string STR_SAM_STATIC_SECOND_TITLE         #language en-US  "Static(Second)"
+#string STR_SAM_STATIC_SECOND_TITLE_HELP    #language en-US  "This bar is used to record how many seconds that have passed, it will refresh every one second"
+#string STR_SAM_STATIC_SECOND_VALUE         #language en-US  "Unknown"
+
+#string STR_SAM_STATIC_COUNTER_TITLE        #language en-US  "Static(Counter)"
+#string STR_SAM_STATIC_COUNTER_TITLE_HELP   #language en-US  "This bar is used to record counts that have passed"
+#string STR_SAM_STATIC_COUNTER_VALUE        #language en-US  "Unknown"
+
+#string STR_SAM_CHECKBOX_PROMPT             #language en-US  "Check Box"
+#string STR_SAM_CHECKBOX_PROMPT_HELP        #language en-US  "This option is used for debug of checkbox"
+
+#string STR_SAM_RESET_BUTTON_PROMPT         #language en-US  "Reset Button"
+#string STR_SAM_RESET_BUTTON_PROMPT_HELP    #language en-US  "This option is used for debug of resetbutton"
+
+#string STR_SAM_STRING_PROMPT               #language en-US  "String"
+#string STR_SAM_STRING_PROMPT_HELP          #language en-US  "This option is used for debug of string"
+
+#string STR_SAM_ONEOF_PROMPT                #language en-US  "Oneof"
+#string STR_SAM_ONEOF_PROMPT_HELP           #language en-US  "This option is used for debug of oneof"
+
+#string STR_SAM_NUMERIC_PROMPT              #language en-US  "Numeric"
+#string STR_SAM_NUMERIC_PROMPT_HELP         #language en-US  "This option is used for debug of numeric"
+
+#string STR_SAM_PASSWORD_PROMPT             #language en-US  "Password"
+#string STR_SAM_PASSWORD_PROMPT_HELP        #language en-US  "This option is used for debug of password"
+
+#string STR_SAM_ACTION_PROMPT               #language en-US  "Action"
+#string STR_SAM_ACTION_PROMPT_HELP          #language en-US  "This option is used for debug of action"
+#string STR_SAM_ACTION_PROMPT_CONFIG        #language en-US  "This option is used for debug of action config"

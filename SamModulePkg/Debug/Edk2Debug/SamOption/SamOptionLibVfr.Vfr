@@ -4,20 +4,114 @@
 //
 //**/
 
-#define SAM_OPTION_BAR_FORMSET_GUID  {0x6086f8c4, 0x3f16, 0x47a4, 0x92, 0xfe, 0x98, 0x2c, 0x8f, 0x78, 0xfc, 0x92}
-#define SAM_OPTION_BAR_FORM_ID       0x1000
+#include "SamOptionLibHii.h"
+
 
 formset
-  guid      = SAM_OPTION_BAR_FORMSET_GUID,
-  title     = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER),
-  help      = STRING_TOKEN(STR_SAM_OPTION_BAR_HELP),
-  classguid = gEfiIfrFrontPageGuid,
+    guid      = SAM_OPTION_FORMSET_GUID,
+    title     = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER),
+    help      = STRING_TOKEN(STR_SAM_OPTION_BAR_HELP),
+    classguid = gEfiIfrFrontPageGuid,
 
-  form formid = SAM_OPTION_BAR_FORM_ID,
-       title  = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER);
+    varstore SAM_OPTION_LIB_NV_DATA,
+      varid = SAM_OPTION_FORM_ID,
+      name  = SamOptionLibNvVar,
+      guid  = SAM_OPTION_FORMSET_GUID;
 
-       subtitle text = STRING_TOKEN(STR_SAM_OPTION_HEADER);
+    defaultstore MyStandardDefault,
+      prompt    = STRING_TOKEN(STR_STANDARD_DEFAULT_PROMPT),
+      attribute = 0x0000; // Default ID: 0000 standard default
 
-  endform;
+    defaultstore MyManufactureDefault,
+      prompt    = STRING_TOKEN(STR_MANUFACTURE_DEFAULT_PROMPT),
+      attribute = 0x0001; // Default ID: 0001 manufacture default
+
+    form formid = SAM_OPTION_FORM_ID,
+        title  = STRING_TOKEN(STR_SAM_OPTION_BAR_BANNER);
+        subtitle text = STRING_TOKEN(STR_SAM_OPTION_HEADER);
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+        text
+            help  = STRING_TOKEN(STR_SAM_STATIC_SECOND_TITLE_HELP),
+            text  = STRING_TOKEN(STR_SAM_STATIC_SECOND_TITLE),
+            text  = STRING_TOKEN(STR_SAM_STATIC_SECOND_VALUE),
+            flags = 0,
+            key   = 0;
+
+        text
+            help  = STRING_TOKEN(STR_SAM_STATIC_COUNTER_TITLE_HELP),
+            text  = STRING_TOKEN(STR_SAM_STATIC_COUNTER_TITLE),
+            text  = STRING_TOKEN(STR_SAM_STATIC_COUNTER_VALUE),
+            flags = 0,
+            key   = 0;
+
+        resetbutton
+            defaultstore = MyStandardDefault,
+            prompt   = STRING_TOKEN(STR_SAM_RESET_BUTTON_PROMPT),
+            help     = STRING_TOKEN(STR_SAM_RESET_BUTTON_PROMPT_HELP),
+        endresetbutton;
+
+        checkbox varid = SamOptionLibNvVar.CheckBox,
+            questionid = SAM_KEY_VALUE_CHECKBOX,
+            prompt     = STRING_TOKEN(STR_SAM_CHECKBOX_PROMPT),
+            help       = STRING_TOKEN(STR_SAM_CHECKBOX_PROMPT_HELP),
+            flags      = CHECKBOX_DEFAULT | CHECKBOX_DEFAULT_MFG | INTERACTIVE,
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endcheckbox;
+
+        string varid   = SamOptionLibNvVar.String,
+            questionid = SAM_KEY_VALUE_STRING,
+            prompt     = STRING_TOKEN(STR_SAM_STRING_PROMPT),
+            help       = STRING_TOKEN(STR_SAM_STRING_PROMPT_HELP),
+            flags      = INTERACTIVE | RESET_REQUIRED,
+            minsize    = 0,
+            maxsize    = 128,
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endstring;
+
+        oneof varid     = SamOptionLibNvVar.Oneof,
+            questionid  = SAM_KEY_VALUE_ONEOF,
+            prompt      = STRING_TOKEN(STR_SAM_ONEOF_PROMPT),
+            help        = STRING_TOKEN(STR_SAM_ONEOF_PROMPT_HELP),
+            flags       = INTERACTIVE | RESET_REQUIRED,
+            option text = STRING_TOKEN(STR_DISABLE), value = 0x00, flags = DEFAULT;
+            option text = STRING_TOKEN(STR_ENABLE), value = 0x01, flags = 0;
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endoneof;
+
+        numeric varid   = SamOptionLibNvVar.Numeric,
+            questionid  = SAM_KEY_VALUE_NUMERIC,
+            prompt      = STRING_TOKEN(STR_SAM_NUMERIC_PROMPT),
+            help        = STRING_TOKEN(STR_SAM_NUMERIC_PROMPT_HELP),
+            minimum     = 0,
+            maximum     = 256,
+            step        = 1,
+            default     = 128,
+            default     = 18, defaultstore = MyStandardDefault,     // This is standard default value
+            default     = 19, defaultstore = MyManufactureDefault,  // This is manufacture default value
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endnumeric;
+
+        password varid = SamOptionLibNvVar.Password,
+            questionid = SAM_KEY_VALUE_PASSWORD,
+            prompt     = STRING_TOKEN(STR_SAM_PASSWORD_PROMPT),
+            help       = STRING_TOKEN(STR_SAM_PASSWORD_PROMPT_HELP),
+            flags      = INTERACTIVE,
+            key        = SAM_KEY_VALUE_PASSWORD,
+            minsize    = 0,
+            maxsize    = 128,
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endpassword;
+
+        action
+            questionid  = SAM_KEY_VALUE_ACTION,
+            prompt      = STRING_TOKEN(STR_SAM_ACTION_PROMPT),
+            help        = STRING_TOKEN(STR_SAM_ACTION_PROMPT_HELP),
+            flags       = INTERACTIVE,
+            config      = STRING_TOKEN(STR_SAM_ACTION_PROMPT_CONFIG),
+            refreshguid = SAM_OPTION_FORM_REFRESH_GUID,
+        endaction;
+
+    endform;
 
 endformset;

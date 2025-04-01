@@ -21,9 +21,9 @@
       NULL|MdeModulePkg/Library/DeviceManagerUiLib/DeviceManagerUiLib.inf
       NULL|MdeModulePkg/Library/BootManagerUiLib/BootManagerUiLib.inf
       NULL|MdeModulePkg/Library/BootMaintenanceManagerUiLib/BootMaintenanceManagerUiLib.inf
-      // Add this
+      # Add this
       NULL|SamModulePkg/Debug/Edk2Debug/SamOption/SamOptionLib.inf
-      // Add this
+      # Add this
     }
 
 ...
@@ -34,11 +34,17 @@
 
 ```shell
 build -p OvmfPkg/OvmfPkgX64.dsc -t GCC5 -a X64 -b DEBUG
+build -p OvmfPkg/OvmfPkgX64.dsc -t VS2022 -a X64 -b DEBUG
 ```
 
 - Run OVMF.fd
 
 ## 2. Screenshot
+
+- 20250409
+
+  ![20250409-1](Figure/20250409/1.png)
+  ![20250409-2](Figure/20250409/2.png)
 
 - 20250226
 

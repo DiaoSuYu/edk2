@@ -29,9 +29,14 @@
   MdePkg/MdePkg.dec
 
 [LibraryClasses]
+  UefiHiiServicesLib            # MdeModulePkg/MdeModulePkg.dec
   UefiBootServicesTableLib      # MdePkg/MdePkg.dec
   UefiLib                       # MdePkg/MdePkg.dec
+  PrintLib                      # MdePkg/MdePkg.dec
   UefiRuntimeServicesTableLib   # MdePkg/MdePkg.dec
 
 [Guids]
   gEfiIfrFrontPageGuid   # MdeModulePkg/MdeModulePkg.dec
+
+[Protocols]
+  gEfiHiiConfigRoutingProtocolGuid  # MdePkg/MdePkg.dec

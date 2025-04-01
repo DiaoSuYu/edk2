@@ -1,9 +1,5 @@
 /** @file
   This section is used to add a Sam Option under SETUP for learning and debugging.
-
-Copyright (c) 2004 - 2017, Intel Corporation. All rights reserved.<BR>
-SPDX-License-Identifier: BSD-2-Clause-Patent
-
 **/
 
 #ifndef _SAM_OPTION_H_
@@ -11,6 +7,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Uefi.h>
 #include <Protocol/HiiConfigAccess.h>
+#include "SamOptionLibHii.h"
 
 #pragma pack(1)
 
@@ -26,16 +23,6 @@ typedef struct {
 
 #pragma pack()
 
-/**
-  GUID for the SAM Option Formset.
-  
-  This GUID is used to identify the formset in the HII database and must match
-  the definition in the corresponding VFR file.
-*/
-#define SAM_OPTION_FORMSET_GUID \
-{ \
-  0x6086f8c4, 0x3f16, 0x47a4, {0x92, 0xfe, 0x98, 0x2c, 0x8f, 0x78, 0xfc, 0x92} \
-}
 
 /**
   Signature for SAM Option Callback Data structure.
@@ -45,11 +32,22 @@ typedef struct {
 #define SAM_OPTION_CALLBACK_DATA_SIGNATURE  SIGNATURE_32 ('S', 'O', 'C', 'B')
 
 /**
-  Form ID for SAM Option menu.
-  
-  This ID is used to identify the form inside the formset.
+  Get a pointer to the SAM_OPTION_CALLBACK_DATA structure from the given pointer.
+
+  Here, 'a' is a pointer to an EFI_HII_CONFIG_ACCESS_PROTOCOL instance, and it is type-casted and verified for the signature through the CR macro.
 */
-#define SAM_OPTION_FORM_ID  0x1000
+#define SAM_OPTION_CALLBACK_DATA_FROM_THIS(a)  CR(a, SAM_OPTION_CALLBACK_DATA, SamOptionLibConfigAccess, SAM_OPTION_CALLBACK_DATA_SIGNATURE)
+
+/**
+  Define the maximum allowed counter value.
+*/
+#define MAX_COUNTER_VALUE (UINTN)(-1)
+
+/**
+  Time definitions
+*/
+#define ONE_SECOND  10000000
+
 
 /**
   Structure for handling HII-related data and protocols.
@@ -58,10 +56,13 @@ typedef struct {
   required for HII configuration.
 */
 typedef struct {
-  UINTN                             Signature;     ///< Signature for validation.
-  EFI_HII_HANDLE                    HiiHandle;    ///< HII handle for formset.
-  EFI_HANDLE                        DriverHandle; ///< UEFI driver handle.
-  EFI_HII_CONFIG_ACCESS_PROTOCOL    ConfigAccess; ///< HII configuration access protocol.
+  UINTN                            Signature;                  ///< Signature for validation.
+  EFI_HII_HANDLE                   HiiHandle;                  ///< HII handle for formset.
+  EFI_HANDLE                       DriverHandle;               ///< UEFI driver handle.
+  EFI_HII_CONFIG_ACCESS_PROTOCOL   SamOptionLibConfigAccess;   ///< HII configuration access protocol.
+  SAM_OPTION_LIB_NV_DATA           SamOptionLibNvData;
+  SAM_OPTION_LIB_NV_DATA           SamOptionLibOldNvData;
+  EFI_EVENT                        MainPageRefreshEvent;       ///< Event to refresh the main page.
 } SAM_OPTION_CALLBACK_DATA;
 
 
